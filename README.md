@@ -1,2 +1,2 @@
 # PSW
-Projects developed for Software class
+Projects developed for Software Design class

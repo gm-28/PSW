@@ -66,8 +66,11 @@ public class herebedragons {
         if(heroi.chave) {
             if (heroi.l == chave.l && heroi.c == chave.c)
                 tab.tabuleiro[chave.l][chave.c] = 'H';
-            else
+            else if (dragao.l == chave.l && dragao.c == chave.c){
+                tab.tabuleiro[dragao.l][dragao.c] = 'D';
+            }else{
                 tab.tabuleiro[chave.l][chave.c] = ' ';
+            }
         }else
             tab.tabuleiro[chave.l][chave.c] = 'K';
 

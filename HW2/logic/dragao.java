@@ -3,8 +3,14 @@ package logic;
 import java.util.Random;
 
 public class dragao extends objeto{
-    public int drag_direcao;            //dragao
-    public boolean movimento;
+    private int drag_direcao;            //dragao
+
+    public dragao(int l, int c,boolean pres){
+        super(l,c,pres);
+        this.l=l;
+        this.c=c;
+    }
+
     public void dragao_dir(tabuleiro tab, dragao dragao, heroi heroi){
         Random rand = new Random();
         while(true) {
@@ -50,7 +56,6 @@ public class dragao extends objeto{
                 break;
             }else {
                 dragao.drag_direcao = rand.nextInt(4);
-
                 switch (dragao.drag_direcao) {
                     case 0: // cima
                         if (pos_correta_d(tab, dragao.l - 1, dragao.c)) { //ainda falta
@@ -64,7 +69,8 @@ public class dragao extends objeto{
                         break;
                     case 2: // esquerda
                         if (pos_correta_d(tab, dragao.l, dragao.c - 1)) {
-                            dragao.movimento = true;                        }
+                            dragao.movimento = true;
+                        }
                         break;
                     case 3: // baixo
                         if (pos_correta_d(tab, dragao.l + 1, dragao.c)) {

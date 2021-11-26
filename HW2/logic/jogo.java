@@ -5,7 +5,24 @@ import static java.lang.StrictMath.abs;
 public class jogo {
     public boolean vitoria;
 
-    public void estado(tabuleiro tab, heroi heroi, dragao dragao) {
+    public jogo(tabuleiro tab, heroi heroi, dragao dragao,objeto espada){
+        this.vitoria=false;
+        atualiza_pos(tab, heroi, dragao, espada);
+    }
+
+    public void atualizacao(char movimento,tabuleiro tab, heroi heroi, dragao dragao,objeto espada){
+        //movimento heroi e atualizacao/verficaçao do estado
+        heroi.move_heroi(movimento, tab, heroi,dragao,espada);
+        atualiza_pos(tab, heroi, dragao, espada);
+        estado(tab,heroi,dragao);
+
+        //movimento dragao e atualizacao/verficaçao do estado
+        dragao.dragao_dir(tab,dragao,heroi);
+        atualiza_pos(tab, heroi, dragao, espada);
+        estado(tab,heroi,dragao);
+    }
+
+    private void estado(tabuleiro tab, heroi heroi, dragao dragao) {
         if (heroi.heroi_morre(heroi, dragao)) {
             heroi.presente = false;
         }
@@ -15,29 +32,20 @@ public class jogo {
         }
     }
 
-    public void pos_inicial(heroi heroi, dragao dragao, objeto espada) {
-        heroi.c = 1;
-        heroi.l = 1;
-        heroi.presente = true;
-        heroi.armado = false;
-        espada.c = 1;
-        espada.l = 8;
-        espada.presente = true;
-        dragao.c = 1;
-        dragao.l = 3;
-        dragao.presente = true;
-        dragao.movimento = false;
-    }
 
-    public void atualiza_pos(tabuleiro tab, heroi heroi, dragao dragao, objeto espada) {
-        if (heroi.armado) {
-            espada.presente = false;
-            tab.tabuleiro[espada.l][espada.c] = ' ';
-            tab.tabuleiro[dragao.l][dragao.c] = ' ';
-            if (tab.tabuleiro[heroi.l][heroi.c] != 'E')
-                tab.tabuleiro[heroi.l][heroi.c] = 'A';
-        } else {
-            tab.tabuleiro[heroi.l][heroi.c] = 'H';
+    private void atualiza_pos(tabuleiro tab, heroi heroi, dragao dragao, objeto espada) {
+        if(heroi.presente) {
+            if (heroi.armado){
+                espada.presente = false;
+                tab.tabuleiro[espada.l][espada.c] = ' ';
+                tab.tabuleiro[dragao.l][dragao.c] = ' ';
+                if (tab.tabuleiro[heroi.l][heroi.c] != 'E')
+                    tab.tabuleiro[heroi.l][heroi.c] = 'A';
+            }else{
+                tab.tabuleiro[heroi.l][heroi.c] = 'H';
+            }
+        }else{
+            tab.tabuleiro[heroi.l][heroi.c] = ' ';
         }
 
         if (dragao.presente) {

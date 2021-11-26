@@ -4,8 +4,11 @@ import static java.lang.StrictMath.abs;
 
 public class heroi extends objeto{
     public boolean armado;              //heroi
-    public boolean movimento;          //heroio e dragao
 
+    public heroi(int l, int c,boolean pres){
+        super(l,c,pres);
+        armado=false;
+    }
 
     public void move_heroi(char movimento, tabuleiro tab, heroi obj, dragao dragao, objeto espada) {
         switch (movimento) {
@@ -40,7 +43,7 @@ public class heroi extends objeto{
         }
     }
 
-    public boolean pos_correta_h(tabuleiro tab, heroi obj, int l, int c, dragao dragao, objeto espada) {
+    private boolean pos_correta_h(tabuleiro tab, heroi obj, int l, int c, dragao dragao, objeto espada) {
         if (tab.tabuleiro[l][c] == 'X') {
             obj.movimento = false;
             return false;

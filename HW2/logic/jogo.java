@@ -1,13 +1,15 @@
 package logic;
 
-import static java.lang.StrictMath.abs;
+import java.util.ArrayList;
 
 public class jogo {
     public boolean vitoria;
 
-    public jogo(tabuleiro tab, heroi heroi, dragao dragao,objeto espada){
+    public jogo(tabuleiro tab, heroi heroi,dragao dragao,objeto espada){
         this.vitoria=false;
-        atualiza_pos(tab, heroi, dragao, espada);
+        //ArrayList<dragao> dragoes;
+        atualiza_pos(tab, heroi,dragao, espada);
+        //dragoes = new ArrayList<>(n_drag);
     }
 
     public void atualizacao(char movimento,tabuleiro tab, heroi heroi, dragao dragao,objeto espada){

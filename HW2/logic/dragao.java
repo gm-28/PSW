@@ -5,10 +5,8 @@ import java.util.Random;
 public class dragao extends objeto{
     private int drag_direcao;            //dragao
 
-    public dragao(int l, int c,boolean pres){
+    public dragao(int l, int c,boolean pres){//para varios alterar a declaração do constructor
         super(l,c,pres);
-        this.l=l;
-        this.c=c;
     }
 
     public void dragao_dir(tabuleiro tab, dragao dragao, heroi heroi){
